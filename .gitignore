@@ -1,0 +1,28 @@
+# Initialize git in main project directory
+cd portfolio-app
+git init
+
+# Create .gitignore
+echo "# Dependencies
+node_modules/
+target/
+
+# IDE
+.vscode/settings.json
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# Build
+build/
+dist/" > .gitignore
+
+# Initial commit
+git add .
+git commit -m "Initial project setup with React + Spring Boot"

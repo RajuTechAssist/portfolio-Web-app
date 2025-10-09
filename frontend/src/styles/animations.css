@@ -1,18 +1,3 @@
-/* EMERGENCY SCROLLBAR FIX */
-* {
-  box-sizing: border-box !important;
-}
-
-html, body, #root {
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100vw !important;
-  overflow-x: hidden !important;
-  max-width: none !important;
-}
-
-
-
 :root {
   /* Primitive Color Tokens */
   --color-white: rgba(255, 255, 255, 1);
@@ -754,71 +739,300 @@ select.form-control {
 
 /* END PERPLEXITY DESIGN SYSTEM */
 /* ========================================
- * APP.CSS - DESIGN SYSTEM VERSION
+ * ANIMATION STYLES - FOR YOUR src/components/animations
  * ========================================
- * Updated to follow design system conventions
+ * Add this to your main CSS file or create animations.css
  */
 
-.logo {
-  height: 6rem;
-  padding: var(--space-24);
-  will-change: filter;
-  transition: filter var(--duration-normal) var(--ease-standard);
+/* =====================================
+ * CUSTOM CURSOR STYLES
+ * ===================================== */
+
+.custom-cursor {
+  position: fixed;
+  width: var(--space-20);
+  height: var(--space-20);
+  border-radius: var(--radius-full);
+  pointer-events: none;
+  z-index: 9999;
+  background-color: rgba(var(--color-teal-300-rgb, 50, 184, 198), 0.6);
+  mix-blend-mode: difference;
+  transform-origin: center;
 }
 
-.logo:hover {
-  filter: drop-shadow(0 0 2em rgba(var(--color-primary-rgb, 33, 128, 141), 0.6));
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em rgba(var(--color-teal-300-rgb, 50, 184, 198), 0.6));
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Hide cursor on mobile devices */
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none;
   }
 }
 
-.card {
-  padding: var(--space-32);
-  background-color: var(--color-surface);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-card-border);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--duration-normal) var(--ease-standard);
+/* =====================================
+ * HERO ANIMATION STYLES
+ * ===================================== */
+
+.hero-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 1;
 }
 
-.card:hover {
-  box-shadow: var(--shadow-md);
+/* Gradient orbs */
+.gradient-orb {
+  position: absolute;
+  border-radius: var(--radius-full);
+  filter: blur(40px);
+  pointer-events: none;
 }
 
-.read-the-docs {
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
+.orb-1 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(var(--color-teal-300-rgb, 50, 184, 198), 0.3) 0%, var(--color-bg-1) 50%, transparent 70%);
+  top: 10%;
+  left: 10%;
 }
 
-/* Mobile responsive breakpoint at 480px */
+.orb-2 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, var(--color-bg-1) 0%, var(--color-bg-5) 50%, transparent 70%);
+  top: 60%;
+  right: 10%;
+}
+
+.orb-3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--color-bg-5) 0%, rgba(var(--color-teal-300-rgb, 50, 184, 198), 0.2) 50%, transparent 70%);
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Floating particles */
+.floating-particle {
+  position: absolute;
+  width: var(--space-4);
+  height: var(--space-4);
+  background: rgba(var(--color-teal-300-rgb, 50, 184, 198), 0.8);
+  border-radius: var(--radius-full);
+  pointer-events: none;
+}
+
+/* Geometric shapes */
+.geometric-shape {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.1;
+}
+
+.shape-1 {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(45deg, rgba(var(--color-teal-300-rgb, 50, 184, 198), 0.3), var(--color-bg-1));
+  top: 30%;
+  right: 20%;
+  border-radius: var(--radius-md);
+}
+
+.shape-2 {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(-45deg, var(--color-bg-5), rgba(var(--color-teal-300-rgb, 50, 184, 198), 0.3));
+  bottom: 40%;
+  left: 15%;
+  transform: rotate(45deg);
+}
+
+/* =====================================
+ * SCROLL PROGRESS INDICATOR
+ * ===================================== */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-teal-400) 50%, var(--color-primary-hover) 100%);
+  transform-origin: 0%;
+  z-index: 9999;
+  border-radius: 0 0 var(--radius-sm) 0;
+}
+
+/* =====================================
+ * PARALLAX SECTION
+ * ===================================== */
+
+.parallax-section {
+  will-change: transform;
+}
+
+/* =====================================
+ * TYPEWRITER CURSOR
+ * ===================================== */
+
+.typewriter-cursor {
+  display: inline-block;
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  margin-left: var(--space-2);
+}
+
+/* =====================================
+ * SCROLL REVEAL ANIMATIONS
+ * ===================================== */
+
+/* Base styles for elements that will be animated */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(var(--space-32));
+  transition: opacity 0.6s var(--ease-standard), transform 0.6s var(--ease-standard);
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger container */
+.stagger-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+/* =====================================
+ * RESPONSIVE ADJUSTMENTS
+ * ===================================== */
+
+/* Mobile portrait */
 @media (max-width: 480px) {
-  .logo {
-    height: 4rem;
-    padding: var(--space-16);
+  .gradient-orb {
+    filter: blur(20px);
   }
   
-  .card {
-    padding: var(--space-16);
+  .orb-1 {
+    width: 150px;
+    height: 150px;
   }
   
-  .read-the-docs {
-    font-size: var(--font-size-xs);
+  .orb-2 {
+    width: 120px;
+    height: 120px;
   }
+  
+  .orb-3 {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .geometric-shape {
+    opacity: 0.03;
+  }
+  
+  .floating-particle {
+    width: var(--space-1);
+    height: var(--space-1);
+  }
+  
+  .shape-1 {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .shape-2 {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .scroll-progress {
+    height: var(--space-2);
+  }
+  
+  .scroll-reveal {
+    transform: translateY(var(--space-20));
+    transition: opacity var(--duration-fast) var(--ease-standard), transform var(--duration-fast) var(--ease-standard);
+  }
+  
+  .stagger-container {
+    gap: var(--space-12);
+  }
+}
+
+/* Tablet and mobile optimizations */
+@media (max-width: 768px) {
+  .gradient-orb {
+    filter: blur(30px);
+  }
+  
+  .orb-1 {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .orb-2 {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .orb-3 {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .geometric-shape {
+    opacity: 0.05;
+  }
+  
+  .floating-particle {
+    width: var(--space-2);
+    height: var(--space-2);
+  }
+}
+
+/* Reduce animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .gradient-orb,
+  .floating-particle,
+  .geometric-shape {
+    animation: none !important;
+  }
+  
+  .scroll-progress {
+    transition: none;
+  }
+  
+  .custom-cursor {
+    display: none;
+  }
+  
+  .scroll-reveal {
+    opacity: 1;
+    transform: translateY(0);
+    transition: none;
+  }
+}
+
+/* =====================================
+ * PERFORMANCE OPTIMIZATIONS
+ * ===================================== */
+
+/* GPU acceleration for smooth animations */
+.gradient-orb,
+.floating-particle,
+.geometric-shape,
+.custom-cursor {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Contain layout and paint for better performance */
+.hero-animation {
+  contain: layout style paint;
 }
