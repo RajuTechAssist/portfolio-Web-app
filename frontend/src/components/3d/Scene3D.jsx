@@ -18,7 +18,7 @@ function AnimatedSphere() {
 
   return (
     <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-      <Sphere ref={meshRef} args={[1, 100, 100]} scale={2.5}>
+      <Sphere ref={meshRef} args={[1, 64, 64]} scale={2.5}>
         <MeshDistortMaterial
           color="#22D3EE"
           attach="material"
@@ -90,8 +90,9 @@ function FloatingShape({ position, scale, rotation, color }) {
 
 /**
  * Particles system for ambient effect
+ * Default count optimized for performance on most devices
  */
-function Particles({ count = 1000 }) {
+function Particles({ count = 500 }) {
   const points = useRef();
 
   const particlesPosition = useMemo(() => {

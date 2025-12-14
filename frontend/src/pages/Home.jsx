@@ -148,31 +148,13 @@ export const Home = () => {
               <motion.div 
                 className="hero-social-links"
                 variants={childVariants}
-                style={{
-                  display: 'flex',
-                  gap: '1rem',
-                  marginTop: '2rem',
-                  alignItems: 'center'
-                }}
               >
                 <a 
                   href="https://github.com/RajuTechAssist"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-link"
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: '50%',
-                    background: 'rgba(255, 255, 255, 0.1)',
-                    backdropFilter: 'blur(10px)',
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                    transition: 'all 0.3s ease',
-                    color: '#F8FAFC'
-                  }}
+                  aria-label="GitHub Profile"
                 >
                   <Github size={22} />
                 </a>
@@ -181,19 +163,7 @@ export const Home = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-link"
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: '50%',
-                    background: 'rgba(255, 255, 255, 0.1)',
-                    backdropFilter: 'blur(10px)',
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                    transition: 'all 0.3s ease',
-                    color: '#F8FAFC'
-                  }}
+                  aria-label="LinkedIn Profile"
                 >
                   <Linkedin size={22} />
                 </a>

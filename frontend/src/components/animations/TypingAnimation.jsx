@@ -1,20 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 /**
  * Typing Animation Component
  * Creates a typewriter effect for text
+ * Note: For optimal performance, wrap the onComplete callback with useCallback in parent component
  */
 export const TypingAnimation = ({ 
   text, 
   speed = 100, 
   delay = 0,
   className = '',
-  onComplete = () => {}
+  onComplete
 }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const onCompleteRef = useRef(onComplete);
+
+  // Update ref when onComplete changes to avoid stale closures
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
 
   useEffect(() => {
     if (currentIndex < text.length) {
@@ -26,9 +33,11 @@ export const TypingAnimation = ({
       return () => clearTimeout(timeout);
     } else if (!isComplete) {
       setIsComplete(true);
-      onComplete();
+      if (onCompleteRef.current) {
+        onCompleteRef.current();
+      }
     }
-  }, [currentIndex, text, speed, delay, isComplete, onComplete]);
+  }, [currentIndex, text, speed, delay, isComplete]);
 
   return (
     <span className={className}>

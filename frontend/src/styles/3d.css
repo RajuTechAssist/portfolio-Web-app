@@ -9,6 +9,30 @@
   overflow: hidden;
 }
 
+/* Hero social links container */
+.hero-social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  align-items: center;
+}
+
+/* Social link button styles */
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  color: #F8FAFC;
+  text-decoration: none;
+}
+
 /* Social links hover effects */
 .social-link:hover {
   background: rgba(34, 211, 238, 0.2) !important;
