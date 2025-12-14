@@ -93,25 +93,19 @@ const Footer = () => {
     {
       name: 'GitHub',
       icon: <Github size={20} />,
-      url: 'https://github.com',
+      url: 'https://github.com/RajuTechAssist',
       color: '#333'
     },
     {
       name: 'LinkedIn',
       icon: <Linkedin size={20} />,
-      url: 'https://linkedin.com',
+      url: 'https://www.linkedin.com/in/raju-52b130247/',
       color: '#0077B5'
-    },
-    {
-      name: 'Twitter',
-      icon: <Twitter size={20} />,
-      url: 'https://twitter.com',
-      color: '#1DA1F2'
     },
     {
       name: 'Email',
       icon: <Mail size={20} />,
-      url: 'mailto:hello@example.com',
+      url: 'mailto:rajutechassist@gmail.com',
       color: '#EA4335'
     }
   ];
@@ -282,7 +276,7 @@ const Footer = () => {
                 >
                   <Heart size={14} fill="currentColor" />
                 </motion.span>
-                {' '}by Your Name
+                {' '}by Raju
               </p>
             </div>
 
