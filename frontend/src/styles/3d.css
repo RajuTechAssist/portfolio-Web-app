@@ -1,0 +1,121 @@
+/* ========================================
+   3D SCENE STYLES
+   ======================================== */
+
+/* Hero section positioning for 3D background */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Social links hover effects */
+.social-link:hover {
+  background: rgba(34, 211, 238, 0.2) !important;
+  border-color: rgba(34, 211, 238, 0.5) !important;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 16px rgba(34, 211, 238, 0.3);
+}
+
+.social-link:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Enhanced hero content with better z-index layering */
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Gradient orbs with enhanced blur */
+.gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  animation: float 20s ease-in-out infinite;
+  z-index: 1;
+}
+
+.gradient-orb-1 {
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, #22D3EE, #3B82F6);
+  top: 10%;
+  right: 10%;
+  animation-delay: 0s;
+}
+
+.gradient-orb-2 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #8B5CF6, #EC4899);
+  bottom: 20%;
+  left: 5%;
+  animation-delay: 7s;
+}
+
+.gradient-orb-3 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 14s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(20px, -20px) scale(1.1);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  75% {
+    transform: translate(20px, 20px) scale(1.05);
+  }
+}
+
+/* Loading fallback for 3D scene */
+.scene-3d-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.2rem;
+}
+
+/* Ensure text is readable over 3D background */
+.hero-text {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-title-main {
+  text-shadow: 0 4px 20px rgba(34, 211, 238, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .gradient-orb {
+    filter: blur(60px);
+  }
+  
+  .gradient-orb-1,
+  .gradient-orb-2,
+  .gradient-orb-3 {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/* Performance optimization */
+@media (prefers-reduced-motion: reduce) {
+  .gradient-orb {
+    animation: none;
+  }
+}

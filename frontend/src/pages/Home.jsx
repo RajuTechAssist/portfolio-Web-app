@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, Suspense } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,7 @@ import ServicePreview from '../components/sections/ServicePreview';
 import FeaturedProjects from '../components/sections/FeaturedProjects';
 import Button from '../components/common/Button';
 import { useApi } from '../hooks';
+import Scene3D from '../components/3d/Scene3D';
 
 import profileImage from '../assets/Raju1.jpg';
 
@@ -68,6 +69,11 @@ export const Home = () => {
         className="hero-section"
         style={{ y: yBg }}
       >
+        {/* 3D Background Scene */}
+        <Suspense fallback={null}>
+          <Scene3D enableInteraction={false} />
+        </Suspense>
+        
         {/* Background Effects */}
         <div className="gradient-orb gradient-orb-1"></div>
         <div className="gradient-orb gradient-orb-2"></div>
@@ -95,23 +101,23 @@ export const Home = () => {
                 className="hero-title-main"
                 variants={childVariants}
               >
-                RAJU
+                Raju
               </motion.h1>
               
               <motion.h2 
                 className="hero-title-sub"
                 variants={childVariants}
               >
-                Full Stack Developer
+                Software Developer
               </motion.h2>
               
               <motion.p 
                 className="hero-description"
                 variants={childVariants}
               >
-                I create modern, responsive web applications using cutting-edge 
-                technologies. Passionate about clean code, user experience, 
-                and bringing innovative ideas to life.
+                I'm a passionate fresher software developer eager to create innovative 
+                web applications. I love building modern, responsive solutions with clean 
+                code and exceptional user experiences.
               </motion.p>
               
               <motion.div 
@@ -137,6 +143,60 @@ export const Home = () => {
                 >
                   View My Work
                 </Button>
+              </motion.div>
+              
+              <motion.div 
+                className="hero-social-links"
+                variants={childVariants}
+                style={{
+                  display: 'flex',
+                  gap: '1rem',
+                  marginTop: '2rem',
+                  alignItems: 'center'
+                }}
+              >
+                <a 
+                  href="https://github.com/RajuTechAssist"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-link"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '50%',
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    transition: 'all 0.3s ease',
+                    color: '#F8FAFC'
+                  }}
+                >
+                  <Github size={22} />
+                </a>
+                <a 
+                  href="https://www.linkedin.com/in/raju-52b130247/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-link"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '50%',
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    transition: 'all 0.3s ease',
+                    color: '#F8FAFC'
+                  }}
+                >
+                  <Linkedin size={22} />
+                </a>
               </motion.div>
             </motion.div>
 
@@ -319,7 +379,7 @@ export const Home = () => {
                   variant="secondary"
                   size="lg"
                   as="a"
-                  href="https://github.com/yourusername" // Replace with your GitHub
+                  href="https://github.com/RajuTechAssist"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
