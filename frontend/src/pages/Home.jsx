@@ -71,7 +71,7 @@ export const Home = () => {
       >
         {/* 3D Background Scene */}
         <Suspense fallback={null}>
-          <Scene3D enableInteraction={false} />
+          <Scene3D />
         </Suspense>
         
         {/* Background Effects */}

@@ -1,7 +1,6 @@
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Sphere, MeshDistortMaterial, Float } from '@react-three/drei';
-import * as THREE from 'three';
+import { Sphere, MeshDistortMaterial, Float } from '@react-three/drei';
 
 /**
  * Animated 3D Sphere with distortion effect
@@ -136,9 +135,9 @@ function Particles({ count = 1000 }) {
 
 /**
  * Main 3D Scene Component
- * Features: Animated sphere, floating shapes, particles, interactive camera
+ * Features: Animated sphere, floating shapes, particles
  */
-export default function Scene3D({ enableInteraction = false }) {
+export default function Scene3D() {
   return (
     <div style={{ 
       position: 'absolute', 
@@ -147,11 +146,12 @@ export default function Scene3D({ enableInteraction = false }) {
       width: '100%', 
       height: '100%',
       zIndex: 0,
-      pointerEvents: enableInteraction ? 'auto' : 'none'
+      pointerEvents: 'none'
     }}>
       <Canvas
         camera={{ position: [0, 0, 8], fov: 50 }}
         style={{ background: 'transparent' }}
+        dpr={[1, 2]}
       >
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
@@ -160,8 +160,6 @@ export default function Scene3D({ enableInteraction = false }) {
         <AnimatedSphere />
         <FloatingShapes />
         <Particles count={500} />
-        
-        {enableInteraction && <OrbitControls enableZoom={false} enablePan={false} />}
       </Canvas>
     </div>
   );
