@@ -1,16 +1,110 @@
-# React + Vite
+# 3D Portfolio Website - Raju
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, aesthetic 3D portfolio website built with React, Three.js, and Framer Motion. Features an immersive 3D background with animated geometric shapes, particles, and smooth scroll animations.
 
-Currently, two official plugins are available:
+## 🌟 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **3D Background Scene**: Interactive Three.js scene with animated sphere, floating geometric shapes, and particle system
+- **Modern Hero Section**: Eye-catching hero with 3D elements, gradient orbs, and glass morphism effects
+- **Smooth Animations**: Framer Motion powered animations with parallax scrolling effects
+- **Responsive Design**: Mobile-first approach ensuring great experience across all devices
+- **Performance Optimized**: Optimized 3D rendering with device pixel ratio support
+- **SEO Ready**: Proper meta tags and semantic HTML structure
 
-## React Compiler
+## 🚀 Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 18** - Modern React with hooks
+- **Vite** - Lightning-fast build tool
+- **Three.js** (0.160.0) - 3D graphics library
+- **@react-three/fiber** (8.15.0) - React renderer for Three.js
+- **@react-three/drei** (9.88.0) - Useful helpers for react-three-fiber
+- **Framer Motion** (11.18.2) - Animation library
+- **React Router** (6.26.0) - Client-side routing
+- **Lucide React** (0.439.0) - Beautiful icons
 
-## Expanding the ESLint configuration
+## 📦 Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## 🛠️ Development
+
+```bash
+# Run linting
+npm run lint
+
+# Format code
+npm run format
+
+# Type checking
+npm run type-check
+```
+
+## 📂 Project Structure
+
+```
+src/
+├── components/
+│   ├── 3d/              # 3D components (Scene3D)
+│   ├── animations/      # Animation components
+│   ├── common/          # Reusable components (Header, Footer, Button)
+│   └── sections/        # Page sections
+├── pages/               # Page components
+├── styles/              # CSS files
+├── hooks/               # Custom React hooks
+├── services/            # API services
+└── utils/               # Utility functions
+```
+
+## 🎨 Customization
+
+### Colors
+Edit the CSS variables in `src/styles/colors.css` to change the color scheme.
+
+### 3D Scene
+Modify `src/components/3d/Scene3D.jsx` to customize:
+- Particle count and appearance
+- Geometric shapes
+- Lighting and camera settings
+
+### Hero Content
+Update personal information in `src/pages/Home.jsx`:
+- Name and tagline
+- Description
+- Social media links
+
+## 📱 Social Links
+
+- GitHub: [RajuTechAssist](https://github.com/RajuTechAssist)
+- LinkedIn: [raju-52b130247](https://www.linkedin.com/in/raju-52b130247/)
+
+## 🔧 Configuration
+
+### Vite Configuration
+See `vite.config.js` for build and development server settings.
+
+### ESLint
+See `eslint.config.js` for linting rules.
+
+## 📄 License
+
+This project is open source and available for personal use.
+
+## 👨‍💻 Developer
+
+**Raju** - Software Developer
+
+---
+
+Made with ❤️ using React, Three.js, and modern web technologies.
