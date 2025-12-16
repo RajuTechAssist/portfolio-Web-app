@@ -1,15 +1,8 @@
-import React from 'react'
+import React from "react";
+import Home from "./pages/Home";
 
 const App = () => {
-  return (
-    <main>
-      <div>
-        <h1>
-          Welcome to my 3D Portfolio
-        </h1>
-      </div>
-    </main>
-  )
-}
+  return <Home />;
+};
 
-export default App
+export default App;
