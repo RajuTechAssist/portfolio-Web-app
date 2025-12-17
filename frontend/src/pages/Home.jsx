@@ -2,6 +2,8 @@ import React from 'react';
 import HeroSection from '../components/3d/HeroSection';
 import AboutSection from '../components/sections/AboutSection';
 import ProjectsSection from '../components/sections/ProjectsSection';
+import ContactSection from '../components/sections/ContactSection';
+import Fotter from '../components/sections/Footer'
 
 
 /**
@@ -15,6 +17,8 @@ export const Home = () => {
       <HeroSection />
       <AboutSection />
       <ProjectsSection />
+      <ContactSection />
+      <Fotter/>
     </div>
   );
 };

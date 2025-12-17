@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Github, Linkedin, Cpu, Code, Zap } from 'lucide-react';
-import AbstractHeroScene from './AbstractHeroScene';
+import { ArrowRight, Download, Github, Linkedin, Mail, ChevronDown } from 'lucide-react';
 import './HeroSection.css';
 
+/**
+ * Enhanced Navbar with Professional Design
+ * Mobile-first responsive, smooth scroll effects
+ */
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
@@ -13,25 +16,53 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <nav className={`glass-nav ${scrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
-        <a href="#home" className="nav-logo">
-          {'<Raju />'}
-        </a>
+        <div className="nav-brand">
+          <div className="logo-text">&lt; Raju /&gt;</div>
+        </div>
         <div className="nav-links">
-          <a href="#about" className="nav-link">About</a>
-          <a href="#projects" className="nav-link">Work</a>
-          <a href="#contact" className="nav-link">Contact</a>
+          <button onClick={() => scrollToSection('about')} className="nav-link">
+            About
+          </button>
+          <button onClick={() => scrollToSection('projects')} className="nav-link">
+            Work
+          </button>
+          <button onClick={() => scrollToSection('contact')} className="nav-link">
+            Contact
+          </button>
         </div>
       </div>
     </nav>
   );
 };
 
+/**
+ * Main Hero Section with Profile Image Support
+ * Features:
+ * - Circular profile image with glow effect
+ * - Fresher-friendly copy with humor
+ * - Modern CTA buttons
+ * - Mobile-first design
+ * - Smooth entrance animations
+ */
 export const HeroSection = () => {
-  const roles = ["Full Stack Developer", "UI/UX Designer", "Tech Enthusiast"];
   const [roleIndex, setRoleIndex] = useState(0);
+
+  const roles = [
+    '💻 Full Stack Developer',
+    '🎨 UI/UX Tinkerer',
+    '🚀 Tech Enthusiast',
+    '📚 Forever Learning™'
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -40,131 +71,207 @@ export const HeroSection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Animation variants
-  const container = {
+  // Animation Variants
+  const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.1 }
+    }
   };
 
-  const item = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: 'easeOut' }
+    }
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 1, ease: 'easeOut' }
+    }
+  };
+
+  const floatingAnimation = {
+    initial: { y: 0 },
+    animate: {
+      y: [0, -20, 0],
+      transition: { duration: 4, repeat: Infinity, ease: 'easeInOut' }
+    }
   };
 
   return (
-    <section className="hero-section" id="home">
+    <>
       <Navbar />
-
-      {/* 3D Background - Now using the Abstract Scene */}
-      <div className="hero-3d-background">
-        <AbstractHeroScene />
-      </div>
-
-      <div className="hero-content-wrapper">
-        <div className="hero-container">
-          
+      <section className="hero-section">
+        <motion.div
+          className="hero-container"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {/* Left Content */}
-          <motion.div 
-            className="hero-content"
-            variants={container}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.div className="status-badge" variants={item}>
-              <span className="status-dot"></span>
+          <motion.div className="hero-content" variants={itemVariants}>
+            {/* Status Badge */}
+            <motion.div className="status-badge" variants={itemVariants}>
+              <div className="status-dot"></div>
               <span className="status-text">Available for Hire</span>
             </motion.div>
 
-            <motion.div variants={item}>
+            {/* Main Title */}
+            <motion.div variants={itemVariants}>
               <h1 className="hero-title">
-                Crafting <br />
-                <span className="title-highlight">Digital Experiences</span>
+                Building <span className="gradient-text">Digital Experiences</span>
               </h1>
             </motion.div>
 
-            <motion.h2 className="hero-subtitle" variants={item}>
-              I am a
-              <span key={roleIndex} className="typing-text">
+            {/* Subtitle with Rotating Roles */}
+            <motion.div className="hero-subtitle" variants={itemVariants}>
+              <span>I am a </span>
+              <motion.span
+                className="typing-text"
+                key={roleIndex}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.5 }}
+              >
                 {roles[roleIndex]}
-              </span>
-            </motion.h2>
-
-            <motion.p className="hero-description" variants={item}>
-              Transforming complex problems into elegant, scalable solutions. 
-              Specialized in React, Node.js, and modern web technologies to build 
-              immersive user interfaces.
-            </motion.p>
-
-            <motion.div className="hero-actions" variants={item}>
-              <a href="#projects" className="btn-glass btn-primary">
-                View My Work <ArrowRight size={18} />
-              </a>
-              <a href="/resume.pdf" className="btn-glass btn-secondary">
-                Download CV <Download size={18} />
-              </a>
+              </motion.span>
             </motion.div>
 
-            <motion.div className="social-links" variants={item} style={{ marginTop: '2rem', display: 'flex', gap: '1rem' }}>
-              <a href="https://github.com" className="btn-icon">
-                <Github size={24} color="#94a3b8" />
-              </a>
-              <a href="https://linkedin.com" className="btn-icon">
-                <Linkedin size={24} color="#94a3b8" />
-              </a>
+            {/* Description */}
+            <motion.p className="hero-description" variants={itemVariants}>
+              Learning daily, shipping weekly. 📦 Crafting elegant web solutions using modern
+              tech stack. Full Stack Developer with a passion for clean code and pixel-perfect UI.
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div className="hero-actions" variants={itemVariants}>
+              <motion.a
+                href="#projects"
+                className="btn btn-primary"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>View My Work</span>
+                <ArrowRight size={18} />
+              </motion.a>
+              <motion.a
+                href="mailto:rajukumar319247@gmail.com"
+                className="btn btn-secondary"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Mail size={18} />
+                <span>Get Resume</span>
+              </motion.a>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div className="social-links" variants={itemVariants}>
+              <motion.a
+                href="https://github.com/RajuTechAssist"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+                whileHover={{ scale: 1.15, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <Github size={20} />
+              </motion.a>
+              <motion.a
+                href="https://www.linkedin.com/in/raju-52b130247/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+                whileHover={{ scale: 1.15, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <Linkedin size={20} />
+              </motion.a>
+              <motion.a
+                href="mailto:rajukumar319247@gmail.com"
+                className="social-link"
+                whileHover={{ scale: 1.15, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <Mail size={20} />
+              </motion.a>
             </motion.div>
           </motion.div>
 
-          {/* Right Visuals - Floating Glass Cards Overlaying the 3D Scene */}
-          <div className="hero-visuals">
-            {/* These cards float over the 3D Abstract Sphere */}
-            <motion.div 
-              className="glass-card card-tech"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1, duration: 1 }}
+          {/* Right Content - Profile Image */}
+          <motion.div className="hero-visuals" variants={imageVariants}>
+            <motion.div
+              className="profile-container"
+              initial="initial"
+              animate="animate"
+              variants={floatingAnimation}
             >
-              <div className="card-icon">
-                <Cpu size={24} />
+              {/* Profile Image with Glow */}
+              <div className="profile-image-wrapper">
+                <div className="profile-glow"></div>
+                <img
+                  src="/Raju.jpg"
+                  alt="Profile"
+                  className="profile-image"
+                />
               </div>
-              <div className="card-content">
-                <span className="card-label">Tech Stack</span>
-                <span className="card-value">Modern & Fast</span>
-              </div>
-            </motion.div>
 
-            <motion.div 
-              className="glass-card card-exp"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.2, duration: 1 }}
-            >
-              <div className="card-icon">
-                <Zap size={24} />
-              </div>
-              <div className="card-content">
-                <span className="card-label">Performance</span>
-                <span className="card-value">Optimized</span>
-              </div>
-            </motion.div>
+              {/* Decorative Cards Around Image */}
+              <motion.div
+                className="floating-stat stat-1"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+              >
+                <div className="stat-badge">
+                  <span className="stat-number">6+</span>
+                  <span className="stat-label">Months</span>
+                </div>
+              </motion.div>
 
-            <motion.div 
-              className="glass-card card-code"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.4, duration: 1 }}
-            >
-              <div className="card-icon">
-                <Code size={24} />
-              </div>
-              <div className="card-content">
-                <span className="card-label">Code Quality</span>
-                <span className="card-value">Clean & Scalable</span>
-              </div>
+              <motion.div
+                className="floating-stat stat-2"
+                animate={{ rotate: -360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+              >
+                <div className="stat-badge">
+                  <span className="stat-number">1</span>
+                  <span className="stat-label">Project</span>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="floating-stat stat-3"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                <div className="stat-badge">
+                  <span className="stat-icon">⚡</span>
+                  <span className="stat-label">Fast Dev</span>
+                </div>
+              </motion.div>
             </motion.div>
-          </div>
-        </div>
-      </div>
-    </section>
+          </motion.div>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          className="scroll-indicator"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <ChevronDown size={24} />
+        </motion.div>
+      </section>
+    </>
   );
 };
 
