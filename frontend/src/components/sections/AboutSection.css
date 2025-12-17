@@ -1392,3 +1392,15 @@ button:focus-visible,
   outline: none;
   box-shadow: var(--focus-ring);
 }
+
+.tech-icon-inner {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background: rgba(10, 10, 15, 0.8);
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* NO transform on :hover - scale done by Framer Motion */
+}
