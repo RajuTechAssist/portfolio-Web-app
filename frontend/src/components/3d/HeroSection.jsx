@@ -23,13 +23,13 @@ import { SiTypescript, SiSpringboot } from "react-icons/si";
  * Each tech includes: name, icon (emoji/text), color, and animation delay
  */
 const TECH_STACK = [
-  { name: "React", icon: DiReact, color: "#61dafb", delay: 0 },
-  { name: "TypeScript", icon: SiTypescript, color: "#3178c6", delay: 0.1 },
-  { name: "Java", icon: DiJava, color: "#b07219", delay: 0.2 },
-  { name: "Spring Boot", icon: SiSpringboot, color: "#6db33f", delay: 0.3 },
-  { name: "JavaScript", icon: DiJavascript1, color: "#f7df1e", delay: 0.4 },
   { name: "MySQL", icon: DiMysql, color: "#00758f", delay: 0.5 },
   { name: "Docker", icon: DiDocker, color: "#2496ed", delay: 0.6 },
+  { name: "Spring Boot", icon: SiSpringboot, color: "#6db33f", delay: 0.3 },
+  { name: "TypeScript", icon: SiTypescript, color: "#3178c6", delay: 0.1 },
+  { name: "React", icon: DiReact, color: "#61dafb", delay: 0 },
+  { name: "Java", icon: DiJava, color: "#b07219", delay: 0.2 },
+  { name: "JavaScript", icon: DiJavascript1, color: "#f7df1e", delay: 0.4 },
 ];
 
 
@@ -55,7 +55,7 @@ const Navbar = () => {
   return (
     <nav className={`glass-nav ${scrolled ? "scrolled" : ""}`}>
       <div className="nav-container">
-        <a href="/" className="nav-logo">
+        <a href="/about" className="nav-logo">
           {"< "}
           Raju
           {" />"}
