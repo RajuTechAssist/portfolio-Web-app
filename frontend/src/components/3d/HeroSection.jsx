@@ -408,7 +408,7 @@ export const HeroSection = () => {
                 <div className="profile-image">
                   {/* Placeholder - Replace with your actual image */}
                   <img
-                    src="./Raju.jpg"
+                    src="./Raju1.jpg"
                     alt="Profile"
                     style={{
                       width: "100%",
