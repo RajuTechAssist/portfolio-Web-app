@@ -15,8 +15,8 @@ export const Home = () => {
     <div className="home">
       {/* 3D Hero Section with Developer Scene */}
       <HeroSection />
-      <AboutSection />
       <ProjectsSection />
+      <AboutSection />
       <ContactSection />
       <Fotter/>
     </div>
