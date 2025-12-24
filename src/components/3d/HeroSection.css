@@ -620,6 +620,11 @@ select.form-control {
   .container {
     max-width: var(--container-sm);
   }
+
+  .scroll-indicator {
+    bottom: 20px;
+    right: 20px;
+  }
 }
 @media (min-width: 768px) {
   .container {
@@ -1259,11 +1264,15 @@ select.form-control {
    ============================================ */
 
 .scroll-indicator {
-  position: absolute;
-  bottom: 30px;
+ position: absolute;
+  bottom: 5px;
+  right: -10px; /* Moves it to the right corner */
+  left: auto;  /* Ensures it doesn't try to center itself */
   color: var(--color-primary);
   opacity: 0.6;
   animation: bounce 2s ease-in-out infinite;
+  z-index: 20; /* Ensures it stays on top of other elements */
+  cursor: pointer;
 }
 
 /* ============================================
@@ -1412,6 +1421,11 @@ select.form-control {
   .hero-content-wrapper {
     padding: var(--space-16);
     margin-top: 60px;
+  }
+
+  .scroll-indicator {
+    bottom: 20px;
+    right: 20px;
   }
 
   .hero-container {

@@ -146,6 +146,15 @@ export const HeroSection = () => {
     "Full Stack Developer"
   ];
 
+  // 1. FUNCTION to handle the scroll
+  const scrollToProjects = () => {
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+
 // --- NEW FADE LOGIC ---
   const sectionRef = useRef(null);
   
@@ -491,6 +500,8 @@ export const HeroSection = () => {
                 className="scroll-indicator"
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
+                onClick={scrollToProjects} // <--- Adds the click functionality
+                whileHover={{ scale: 1.2, cursor: "pointer" }} // <--- Adds visual feedback
               >
                 <ChevronDown size={24} />
               </motion.div>
