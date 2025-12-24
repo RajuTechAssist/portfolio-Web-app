@@ -338,7 +338,7 @@ export const HeroSection = () => {
               {/* Social Links */}
               <motion.div className="social-links" variants={itemVariants}>
                 <motion.a
-                  href="https://github.com"
+                  href="https://github.com/RajuTechAssist"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-link"
@@ -348,7 +348,7 @@ export const HeroSection = () => {
                   <Github size={20} />
                 </motion.a>
                 <motion.a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/raju-52b130247/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-link"
@@ -358,7 +358,7 @@ export const HeroSection = () => {
                   <Linkedin size={20} />
                 </motion.a>
                 <motion.a
-                  href="mailto:your-email@example.com"
+                  href="mailto:rajukumar319247@gmail.com"
                   className="social-link"
                   whileHover={{ scale: 1.1, y: -3 }}
                   whileTap={{ scale: 0.95 }}
@@ -408,7 +408,7 @@ export const HeroSection = () => {
                 <div className="profile-image">
                   {/* Placeholder - Replace with your actual image */}
                   <img
-                    src="./Raju1.jpg"
+                    src="./Raju2.JPG"
                     alt="Profile"
                     style={{
                       width: "100%",

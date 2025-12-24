@@ -17,8 +17,8 @@ const contactLinks = [
     id: 'email',
     icon: Mail,
     label: 'Email',
-    value: 'your.email@example.com',
-    href: 'mailto:your.email@example.com',
+    value: 'rajukumar319247@gmail.com',
+    href: 'mailto:rajukumar319247@gmail.com',
     color: '#3b82f6',
     message: '💌 Let\'s talk details',
     description: 'Direct line to my inbox'
@@ -27,8 +27,8 @@ const contactLinks = [
     id: 'linkedin',
     icon: Linkedin,
     label: 'LinkedIn',
-    value: '/in/your-username',
-    href: 'https://linkedin.com/in/your-username',
+    value: '/in/raju-52b130247',
+    href: 'https://www.linkedin.com/in/raju-52b130247/',
     color: '#0a66c2',
     message: '🔗 Let\'s connect',
     description: 'Professional updates & conversations'
@@ -37,8 +37,8 @@ const contactLinks = [
     id: 'github',
     icon: Github,
     label: 'GitHub',
-    value: '@your-username',
-    href: 'https://github.com/your-username',
+    value: '@RajuTechAssist',
+    href: 'https://github.com/RajuTechAssist',
     color: '#171515',
     message: '💻 View my code',
     description: 'Repos, experiments, and side projects'
