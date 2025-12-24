@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useScroll, 
+  useTransform} from "framer-motion";
 import {
   ArrowRight,
   Download,
@@ -61,15 +62,17 @@ const Navbar = () => {
           {" />"}
         </a>
         <div className="nav-links">
-          <button onClick={() => scrollToSection("about")} className="nav-link">
-            About
-          </button>
           <button
             onClick={() => scrollToSection("projects")}
             className="nav-link"
           >
             Work
           </button>
+
+          <button onClick={() => scrollToSection("about")} className="nav-link">
+            About
+          </button>
+          
           <button
             onClick={() => scrollToSection("contact")}
             className="nav-link"
@@ -140,11 +143,41 @@ const IconComponent = tech.icon;
 export const HeroSection = () => {
   const [roleIndex, setRoleIndex] = useState(0);
   const roles = [
-    "💻 Full Stack Developer",
-    "🎨 UI/UX Tinkerer",
-    "🚀 Tech Enthusiast",
-    "📚 Forever Learning™",
+    "Full Stack Developer"
   ];
+
+ // --- 1. SETUP SCROLL & DRAG LOGIC ---
+  
+  // Track Page Scroll (0 to 1)
+  const { scrollYProgress } = useScroll();
+  
+  // Convert Scroll (0-1) to Degrees (0-360)
+  const scrollRotation = useTransform(scrollYProgress, [0, 1], [0, 360]);
+  
+  // Track Manual Drag Rotation
+  const dragRotation = useMotionValue(0);
+
+  // Combine both (Drag + Scroll)
+  const combinedRotation = useTransform(
+    [dragRotation, scrollRotation], 
+    ([drag, scroll]) => drag + scroll
+  );
+
+  // Add Physics (Spring) for smoothness
+  const rotateSpring = useSpring(combinedRotation, { damping: 20, stiffness: 150 });
+
+  const handlePan = (event, info) => {
+    // Update the drag value when user moves mouse/touch
+    const newRotation = dragRotation.get() + info.delta.x * 0.5;
+    dragRotation.set(newRotation);
+  };
+  // -------------------------------------
+
+  // --- 2. FADE OUT LOGIC (New) ---
+  // As you scroll down the first 15% of the page, opacity goes 1 -> 0
+  const visualOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  // Optional: Scale it down slightly as it disappears
+  const visualScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.8]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -307,9 +340,8 @@ export const HeroSection = () => {
 
               {/* Description */}
               <motion.p className="hero-description" variants={itemVariants}>
-                Learning daily, shipping weekly. 📦 Crafting elegant web
-                solutions using modern tech stack. Full Stack Developer with
-                passion for clean code and pixel-perfect UI.
+                I'm Raju, a software developer from New Delhi, India, building
+                modern apps and online experiences for companies large and small.
               </motion.p>
 
               {/* CTA Buttons */}
@@ -374,6 +406,8 @@ export const HeroSection = () => {
               variants={imageVariants}
               initial="hidden"
               animate="visible"
+
+              style={{ opacity: visualOpacity, scale: visualScale }}
             >
               {/* Profile Image Container with Deep Visuals */}
               <div className="profile-image-container">
@@ -420,7 +454,13 @@ export const HeroSection = () => {
                 </div>
 
                 {/* Floating Tech Stack Icons Around Photo */}
-                <div className="tech-icons-orbit">
+                <motion.div
+                  className="tech-icons-orbit"
+                  style={{ rotate: rotateSpring }} // Bind rotation to spring
+                  onPan={handlePan} // Listen for drag/pan events
+                  whileHover={{ cursor: "grab" }}
+                  whileTap={{ cursor: "grabbing" }}
+                >
                   {TECH_STACK.map((tech, index) => (
                     <FloatingTechIcon
                       key={tech.name}
@@ -429,7 +469,7 @@ export const HeroSection = () => {
                       totalIcons={TECH_STACK.length}
                     />
                   ))}
-                </div>
+                </motion.div>
               </div>
 
               {/* Scroll Indicator */}
