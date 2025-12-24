@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
   DiReact,
   DiJava,
@@ -204,6 +204,17 @@ export const AboutSection = () => {
   const [interests, setInterests] = useState(INITIAL_INTERESTS);
   const [draggedInterest, setDraggedInterest] = useState(null);
 
+  // --- ADD FADE LOGIC ---
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8]);
+  // ----------------------
+
   const handleDragStart = (interest) => {
     setDraggedInterest(interest);
   };
@@ -234,7 +245,8 @@ export const AboutSection = () => {
   };
 
   return (
-    <section id="about" className="about-section">
+    <motion.section id="about" className="about-section" ref={sectionRef}
+      style={{ opacity, scale }}>
       {/* Animated Background Elements */}
       <div className="about-background">
         <div className="blob blob-1"></div>
@@ -417,7 +429,7 @@ export const AboutSection = () => {
           </motion.a>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

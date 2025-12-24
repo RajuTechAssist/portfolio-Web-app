@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Mail, Linkedin, Github, ArrowRight } from 'lucide-react';
 import './ContactSection.css';
 
@@ -85,6 +85,19 @@ export const ContactSection = () => {
     message: ''
   });
 
+  // --- ADD FADE LOGIC ---
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end end"] // "end end" means when bottom of section hits bottom of screen
+  });
+
+  // Fade In only (since it's the footer area)
+  // [0, 0.3] -> Fade In | [0.3, 1] -> Stay Visible
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+  const scale = useTransform(scrollYProgress, [0, 0.3], [0.8, 1]);
+  // ----------------------
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -107,7 +120,8 @@ export const ContactSection = () => {
   };
 
   return (
-    <section className="contact-section" id="contact">
+    <motion.section className="contact-section" id="contact" ref={sectionRef}
+      style={{ opacity, scale }}>
       <motion.div
         className="contact-container"
         variants={containerVariants}
@@ -343,7 +357,7 @@ export const ContactSection = () => {
           </motion.div>
         </motion.div>
       </motion.div>
-    </section>
+    </motion.section>
   );
 };
 

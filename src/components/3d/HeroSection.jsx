@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring, useScroll, 
   useTransform} from "framer-motion";
 import {
@@ -146,6 +146,20 @@ export const HeroSection = () => {
     "Full Stack Developer"
   ];
 
+// --- NEW FADE LOGIC ---
+  const sectionRef = useRef(null);
+  
+  // Track scroll for THIS specific section
+  const { scrollYProgress: sectionProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"] // Tracking from top of viewport
+  });
+
+  // Fade out as you scroll down (0% to 100% of the section)
+  // Visible (1) until 60% scroll, then fades to (0)
+  const sectionOpacity = useTransform(sectionProgress, [0, 0.6, 1], [1, 1, 0]);
+  const sectionScale = useTransform(sectionProgress, [0, 1], [1, 0.9]); // Optional: subtle zoom out
+
  // --- 1. SETUP SCROLL & DRAG LOGIC ---
   
   // Track Page Scroll (0 to 1)
@@ -228,7 +242,7 @@ export const HeroSection = () => {
     <>
       <Navbar />
 
-      <section className="hero-section">
+      <section ref={sectionRef} className="hero-section">
         {/* Deep Visual Backdrop - Enhanced 3D Effect */}
         <div className="hero-backdrop">
           {/* Animated Gradient Orbs */}
@@ -301,7 +315,7 @@ export const HeroSection = () => {
           ))}
         </div>
 
-        <div className="hero-content-wrapper">
+        <motion.div className="hero-content-wrapper" style={{ opacity: sectionOpacity, scale: sectionScale }}>
           <div className="hero-container">
             {/* Left Content */}
             <motion.div
@@ -482,7 +496,7 @@ export const HeroSection = () => {
               </motion.div>
             </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
     </>
   );

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ExternalLink, Github, Sparkles, ArrowRight } from 'lucide-react';
 import './ProjectsSection.css';
 
@@ -16,6 +16,18 @@ import './ProjectsSection.css';
 export const ProjectsSection = () => {
   const [activeTab, setActiveTab] = useState('featured');
   const [showEasterEgg, setShowEasterEgg] = useState(false);
+
+  // --- ADD FADE LOGIC ---
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"] // Triggers when section enters/leaves view
+  });
+
+  // 0-15%: Fade In | 15-85%: Fully Visible | 85-100%: Fade Out
+  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0.8, 1, 1, 0.8]);
+  // ----------------------
 
   // Featured Project Data
   const featuredProject = {
@@ -95,7 +107,7 @@ export const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects" className="projects-section">
+    <motion.section id="projects" className="projects-section" ref={sectionRef} style={{ opacity, scale }}>
       <motion.div
         className="projects-container"
         variants={containerVariants}
@@ -266,7 +278,7 @@ export const ProjectsSection = () => {
           </motion.a>
         </motion.div>
       </motion.div>
-    </section>
+    </motion.section>
   );
 };
 
