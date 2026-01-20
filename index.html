@@ -1,13 +1,88 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="dark">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
-  </head>
-  <body>
+    <title>Raju | Split-View Tactical Portfolio</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#8b5cf6", // Electric Violet
+              "primary-dark": "#7c3aed",
+              "background-light": "#ffffff",
+              "background-dark": "#09090b", // Zinc-950
+              "surface-light": "#f4f4f5", // Zinc-100
+              "surface-dark": "#18181b", // Zinc-900
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "sans-serif"],
+              mono: ["Fira Code", "monospace"],
+            },
+            boxShadow: {
+              'brutal': '4px 4px 0px 0px currentColor',
+              'brutal-sm': '2px 2px 0px 0px currentColor',
+              'pressed': '1px 1px 0px 0px currentColor',
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.3s ease-out forwards',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+            }
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom scrollbar for webkit */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb {
+        background: #52525b;
+        border: 2px solid transparent;
+        background-clip: content-box;
+        border-radius: 0;
+      }
+      
+      /* Grain Overlay Class */
+      .grain-overlay {
+        position: absolute;
+        inset: 0;
+        background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBvn7EkaH5vX4tjhdVNBIi6LHQvZttEHtn5YGqwPfhQgdDzaFmWvoDo3LQ4NOLnwtRwAVUrPeCep3UMEbKOiRUH_5tE0XnpVgEO6QyDbUpkD9fokca6uRgmtgPdQgQuhlS0cSpgAAc14w_fUCcQ1-HTDfA_G7I20I53EObp7HLsfV50sn9t7ZqqsS0r9d-8G52gOfsFiMfPofNCWUZNoZlNFocn3XVn1f1wCnYDtTXhoNAg4j1cW_bK9mAOfPW2sjbYV1w_PoskTzI);
+        pointer-events: none;
+        z-index: 10;
+        opacity: 0.4;
+        mix-blend-mode: overlay;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-background-light dark:bg-background-dark text-zinc-900 dark:text-zinc-100 font-display selection:bg-primary selection:text-white overflow-hidden">
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+  <script type="module" src="/index.tsx"></script>
+</body>
 </html>
