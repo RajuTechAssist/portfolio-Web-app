@@ -11,7 +11,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onToggleTheme, isDark }) => {
       <img 
         alt="Raju - Digital Architect" 
         className="absolute inset-0 w-full h-full object-cover  object-top brightness-100 opacity-90 contrast-125 " 
-        src="/raju1.jpg"
+        src="/Raju1.jpg"
       />
       {/* Color Overlay */}
       <div className="absolute inset-0 bg-primary mix-blend-multiply opacity-30"></div>
