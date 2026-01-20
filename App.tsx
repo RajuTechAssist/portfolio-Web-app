@@ -68,7 +68,7 @@ function App() {
         </header>
 
         {/* Main Content Scrollable Area */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-12 pb-24 md:pb-32 relative scroll-smooth bg-white dark:bg-zinc-950">
+        <main className="flex-1 overflow-y-auto p-4 md:p-12 pb-20 md:pb-32 relative scroll-smooth bg-white dark:bg-zinc-950">
           {renderContent()}
         </main>
 

@@ -8,7 +8,7 @@ interface NavigationProps {
 
 export const Navigation: React.FC<NavigationProps> = ({ currentTab, onTabChange }) => {
   return (
-    <nav className="absolute bottom-0 w-full h-16 md:h-24 bg-surface-light dark:bg-zinc-900 border-t-4 border-black dark:border-white z-30 flex items-stretch shadow-[0_-4px_20px_rgba(0,0,0,0.1)]">
+    <nav className="fixed md:absolute bottom-0 left-0 right-0 w-full h-16 md:h-24 bg-surface-light dark:bg-zinc-900 border-t-4 border-black dark:border-white z-50 flex items-stretch shadow-[0_-4px_20px_rgba(0,0,0,0.1)]">
       {NAV_ITEMS.map((item) => {
         const isActive = currentTab === item.id;
         return (
