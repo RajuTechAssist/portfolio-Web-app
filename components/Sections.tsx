@@ -204,7 +204,7 @@ export const ProfileSection: React.FC<{ onNavigate: (tab: Tab) => void }> = ({ o
           </form>
         )}
       </div>
-      <div className="flex flex-col md:flex-row gap-4 pb-8">
+      <div className="flex flex-col md:flex-row gap-4 pb-4 md:pb-8 mb-4">
         <button 
           onClick={() => onNavigate(Tab.PROJECTS)}
           className="bg-transparent text-zinc-800 dark:text-zinc-200 font-bold font-mono uppercase px-6 py-3 border-2 border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors w-full md:w-auto text-center"
