@@ -29,14 +29,14 @@ export const ProfileSection: React.FC<{ onNavigate: (tab: Tab) => void }> = ({ o
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateEmail(formState.email)) {
       setEmailError('INVALID_EMAIL_SYNTAX');
       return;
     }
-    
+
     setStatus('submitting');
-    
+
     try {
       const result = await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
@@ -49,12 +49,12 @@ export const ProfileSection: React.FC<{ onNavigate: (tab: Tab) => void }> = ({ o
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
-      
+
       console.log('Email sent successfully:', result.text);
       setStatus('success');
       setFormState({ name: '', email: '', message: '' });
       setEmailError('');
-      
+
       // Reset status after 3 seconds
       setTimeout(() => setStatus('idle'), 3000);
     } catch (error) {
@@ -141,35 +141,35 @@ export const ProfileSection: React.FC<{ onNavigate: (tab: Tab) => void }> = ({ o
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
-            { 
-              title: "Web Development", 
+            {
+              title: "Web Development",
               desc: "Building pixel-perfect interfaces that don't explode on mobile devices.",
-              icon: "html" 
+              icon: "html"
             },
-            { 
-              title: "Tech Content Writing", 
+            {
+              title: "Tech Content Writing",
               desc: "I translate 'Developer Klingon' into human-readable documentation.",
-              icon: "edit_note" 
+              icon: "edit_note"
             },
-            { 
-              title: "Java/CS Tutoring", 
+            {
+              title: "Java/CS Tutoring",
               desc: "Debugging your brain. I explain recursion until you stop crying.",
-              icon: "school" 
+              icon: "school"
             },
-            { 
-              title: "AI Integration", 
+            {
+              title: "AI Integration",
               desc: "Sprinkling LLM magic on boring apps. Skynet is not included.",
-              icon: "psychology" 
+              icon: "psychology"
             },
-            { 
-              title: "Payment Systems", 
+            {
+              title: "Payment Systems",
               desc: "Secure gateways for acquiring funds. Because exposure doesn't pay rent.",
-              icon: "credit_card" 
+              icon: "credit_card"
             },
-            { 
-              title: "E-commerce Ops", 
+            {
+              title: "E-commerce Ops",
               desc: "Digital storefronts. 24/7 revenue streams while you sleep.",
-              icon: "storefront" 
+              icon: "storefront"
             }
           ].map((service, index) => (
             <div key={index} className="bg-surface-light dark:bg-zinc-900 border-2 border-black dark:border-zinc-700 p-4 hover:border-primary hover:-translate-y-1 transition-transform group">
@@ -191,7 +191,7 @@ export const ProfileSection: React.FC<{ onNavigate: (tab: Tab) => void }> = ({ o
           <span className="material-symbols-outlined group-hover:text-primary transition-colors">send</span>
           Direct_Transmission
         </h3>
-        
+
         {status === 'success' ? (
           <div className="bg-green-100 dark:bg-green-900/30 border-2 border-green-500 p-6 text-center animate-fade-in">
             <span className="material-symbols-outlined text-4xl text-green-600 dark:text-green-400 mb-2">check_circle</span>
@@ -203,11 +203,11 @@ export const ProfileSection: React.FC<{ onNavigate: (tab: Tab) => void }> = ({ o
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="group/input">
                 <label className="block text-[10px] font-mono font-bold uppercase mb-2 text-zinc-500 tracking-wider group-focus-within/input:text-primary transition-colors">Identity ID</label>
-                <input 
+                <input
                   required
-                  type="text" 
+                  type="text"
                   value={formState.name}
-                  onChange={e => setFormState({...formState, name: e.target.value})}
+                  onChange={e => setFormState({ ...formState, name: e.target.value })}
                   className={inputClasses}
                   placeholder="ENTER_NAME"
                 />
@@ -217,15 +217,15 @@ export const ProfileSection: React.FC<{ onNavigate: (tab: Tab) => void }> = ({ o
                   Return Frequency
                   {emailError && <span className="ml-2 text-red-500 animate-pulse">! ERROR</span>}
                 </label>
-                <input 
+                <input
                   required
-                  type="email" 
+                  type="email"
                   value={formState.email}
                   onChange={e => {
-                    setFormState({...formState, email: e.target.value});
+                    setFormState({ ...formState, email: e.target.value });
                     if (emailError) setEmailError('');
                   }}
-                  className={emailError 
+                  className={emailError
                     ? "w-full bg-white dark:bg-black border-2 border-red-500 p-3 font-mono text-sm outline-none transition-all duration-200 text-red-600 dark:text-red-400 placeholder:text-zinc-400 focus:border-red-600 focus:shadow-[4px_4px_0px_0px_#dc2626] focus:-translate-y-1 focus:-translate-x-1"
                     : inputClasses
                   }
@@ -240,19 +240,19 @@ export const ProfileSection: React.FC<{ onNavigate: (tab: Tab) => void }> = ({ o
             </div>
             <div className="group/input">
               <label className="block text-[10px] font-mono font-bold uppercase mb-2 text-zinc-500 tracking-wider group-focus-within/input:text-primary transition-colors">Data Packet</label>
-              <textarea 
+              <textarea
                 required
                 rows={4}
                 value={formState.message}
-                onChange={e => setFormState({...formState, message: e.target.value})}
+                onChange={e => setFormState({ ...formState, message: e.target.value })}
                 className={inputClasses}
                 placeholder="INPUT_MESSAGE_CONTENT..."
               />
             </div>
             <div className="flex justify-end">
-              <button 
+              <button
                 disabled={status === 'submitting'}
-                type="submit" 
+                type="submit"
                 className="bg-black dark:bg-white text-white dark:text-black font-bold font-mono uppercase px-8 py-3 border-2 border-transparent hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white transition-all shadow-brutal active:shadow-none active:translate-x-[2px] active:translate-y-[2px] disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 group/btn"
               >
                 {status === 'submitting' ? (
@@ -272,14 +272,14 @@ export const ProfileSection: React.FC<{ onNavigate: (tab: Tab) => void }> = ({ o
         )}
       </div>
       <div className="flex flex-col md:flex-row gap-4 pb-4 md:pb-8 mb-4">
-        <button 
+        <button
           onClick={() => onNavigate(Tab.PROJECTS)}
           className="bg-transparent text-zinc-800 dark:text-zinc-200 font-bold font-mono uppercase px-6 py-3 border-2 border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors w-full md:w-auto text-center"
         >
           View_Full_Portfolio_&gt;
         </button>
 
-        <a 
+        <a
           href="/Raju_CV.pdf"
           download="Raju_Kumar_CV.pdf"
           className="bg-primary text-white font-bold font-mono uppercase px-6 py-3 border-2 border-black dark:border-white shadow-brutal hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all w-full md:w-auto flex items-center justify-center gap-2 group"
@@ -306,13 +306,28 @@ const ProjectCard: React.FC = () => {
           GLOW SERVICES
         </h3>
         <p className="text-zinc-500 font-mono text-xs mb-6 uppercase tracking-wider">Full Stack E-Commerce • Spring Boot • React</p>
-        
+
+        {/* NEW IMAGE SECTION */}
+        <div className="relative mb-8 border-2 border-black dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 overflow-hidden group/image shadow-brutal-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+          <div className="absolute top-0 left-0 bg-black dark:bg-white text-white dark:text-black text-[10px] font-mono font-bold px-2 py-1 z-10 border-b-2 border-r-2 border-black dark:border-white">
+            SYS_PREVIEW.png
+          </div>
+          {/* Using a beauty/salon relevant placeholder since local file access is restricted. Replace src with your image. */}
+          <img
+            src="/glow-service.png"
+            alt="Glow Services Interface Preview"
+            className="w-full h-56 md:h-72 object-cover filter grayscale contrast-125 transition-all duration-500 group-hover/image:filter-none group-hover/image:contrast-100 cursor-pointer"
+          />
+          {/* Scanline effect overlay */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-20 bg-[length:100%_2px,3px_100%] pointer-events-none opacity-20 dark:opacity-40"></div>
+        </div>
+
         <div className="mb-6">
           <p className="text-zinc-600 dark:text-zinc-300 leading-relaxed">
             A robust, full-stack web application designed to digitize beauty and wellness operations. Hybridizing service booking and e-commerce with separate secure portals for Customers and Admins.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div className="bg-surface-light dark:bg-zinc-800 p-3 border border-zinc-200 dark:border-zinc-700">
             <span className="block text-primary font-bold text-lg mb-1">25%</span>
@@ -326,7 +341,7 @@ const ProjectCard: React.FC = () => {
 
         <div className="flex flex-wrap gap-2 mb-6">
           {['Java Spring Boot', 'React.js', 'PostgreSQL', 'AWS S3', 'Google Gemini', 'JWT'].map(tech => (
-             <span key={tech} className="px-2 py-1 text-xs font-bold border border-zinc-300 dark:border-zinc-700 uppercase">{tech}</span>
+            <span key={tech} className="px-2 py-1 text-xs font-bold border border-zinc-300 dark:border-zinc-700 uppercase">{tech}</span>
           ))}
         </div>
 
@@ -357,53 +372,53 @@ const ProjectCard: React.FC = () => {
 
             {/* 2. Features */}
             <div>
-               <h4 className="font-mono text-sm font-bold text-primary mb-3 uppercase">{'> 02_CORE_MODULES'}</h4>
-               <div className="space-y-4">
-                 <div>
-                   <strong className="text-sm uppercase tracking-wide border-b border-zinc-300 dark:border-zinc-700">Customer Portal</strong>
-                   <p className="text-xs mt-2 text-zinc-600 dark:text-zinc-400">
-                     Features a visually engaging landing page, dynamic service booking system with double-booking prevention, and a full e-commerce shopping cart with state persistence. Includes a personal dashboard for order history and loyalty rewards.
-                   </p>
-                 </div>
-                 <div>
-                   <strong className="text-sm uppercase tracking-wide border-b border-zinc-300 dark:border-zinc-700">Admin Portal</strong>
-                   <p className="text-xs mt-2 text-zinc-600 dark:text-zinc-400">
-                     Secure dashboard for managing operations. Includes "AI Writer" powered by Google Gemini to generate blog posts, CMS for services/products (images stored on AWS S3), and business analytics (RevPATH, Staff Utilization).
-                   </p>
-                 </div>
-               </div>
+              <h4 className="font-mono text-sm font-bold text-primary mb-3 uppercase">{'> 02_CORE_MODULES'}</h4>
+              <div className="space-y-4">
+                <div>
+                  <strong className="text-sm uppercase tracking-wide border-b border-zinc-300 dark:border-zinc-700">Customer Portal</strong>
+                  <p className="text-xs mt-2 text-zinc-600 dark:text-zinc-400">
+                    Features a visually engaging landing page, dynamic service booking system with double-booking prevention, and a full e-commerce shopping cart with state persistence. Includes a personal dashboard for order history and loyalty rewards.
+                  </p>
+                </div>
+                <div>
+                  <strong className="text-sm uppercase tracking-wide border-b border-zinc-300 dark:border-zinc-700">Admin Portal</strong>
+                  <p className="text-xs mt-2 text-zinc-600 dark:text-zinc-400">
+                    Secure dashboard for managing operations. Includes "AI Writer" powered by Google Gemini to generate blog posts, CMS for services/products (images stored on AWS S3), and business analytics (RevPATH, Staff Utilization).
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* 3. Architecture */}
             <div>
-               <h4 className="font-mono text-sm font-bold text-primary mb-3 uppercase">{'> 03_SYSTEM_ARCHITECTURE'}</h4>
-               <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-zinc-600 dark:text-zinc-400 font-mono">
-                 <li className="flex items-center gap-2">
-                   <span className="material-symbols-outlined text-sm">lock</span>
-                   JWT Stateless Authentication
-                 </li>
-                 <li className="flex items-center gap-2">
-                   <span className="material-symbols-outlined text-sm">cloud</span>
-                   AWS S3 Image Offloading
-                 </li>
-                 <li className="flex items-center gap-2">
-                   <span className="material-symbols-outlined text-sm">api</span>
-                   Global Exception Handling
-                 </li>
-                 <li className="flex items-center gap-2">
-                   <span className="material-symbols-outlined text-sm">health_and_safety</span>
-                   KeepAlive Mechanism
-                 </li>
-               </ul>
+              <h4 className="font-mono text-sm font-bold text-primary mb-3 uppercase">{'> 03_SYSTEM_ARCHITECTURE'}</h4>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-zinc-600 dark:text-zinc-400 font-mono">
+                <li className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-sm">lock</span>
+                  JWT Stateless Authentication
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-sm">cloud</span>
+                  AWS S3 Image Offloading
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-sm">api</span>
+                  Global Exception Handling
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-sm">health_and_safety</span>
+                  KeepAlive Mechanism
+                </li>
+              </ul>
             </div>
           </div>
         )}
 
         <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between border-t border-zinc-100 dark:border-zinc-800 pt-6">
           <div className="flex gap-4">
-            <a 
-              href="https://glow-service.studio" 
-              target="_blank" 
+            <a
+              href="https://glow-service.studio"
+              target="_blank"
               rel="noreferrer"
               className="bg-black dark:bg-white text-white dark:text-black text-xs font-bold px-4 py-2 uppercase hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white transition-colors"
             >
@@ -413,7 +428,7 @@ const ProjectCard: React.FC = () => {
               Source Code
             </a>
           </div>
-          <button 
+          <button
             onClick={() => setIsExpanded(!isExpanded)}
             className="text-xs font-mono font-bold text-zinc-500 hover:text-primary uppercase flex items-center gap-1"
           >
@@ -429,7 +444,7 @@ export const ProjectsSection: React.FC = () => (
   <section className="section-content max-w-3xl mx-auto animate-fade-in">
     <SectionHeader title="Mission Log" meta="STATUS: DEPLOYED" />
     <ProjectCard />
-    
+
     <div className="p-8 border-2 border-dashed border-zinc-300 dark:border-zinc-700 text-center">
       <span className="material-symbols-outlined text-4xl text-zinc-400 mb-2">construction</span>
       <p className="font-mono text-sm text-zinc-500">ADDITIONAL ARCHIVES ENCRYPTED</p>
@@ -440,7 +455,7 @@ export const ProjectsSection: React.FC = () => (
 export const SkillsSection: React.FC = () => (
   <section className="section-content max-w-3xl mx-auto animate-fade-in">
     <SectionHeader title="Arsenal" meta="CAPABILITY: HIGH" />
-    
+
     <div className="space-y-8">
       <div>
         <h3 className="font-mono text-sm font-bold text-zinc-500 mb-4 uppercase tracking-widest">/ Core_Technologies</h3>
@@ -450,7 +465,7 @@ export const SkillsSection: React.FC = () => (
           ))}
         </div>
       </div>
-      
+
       <div>
         <h3 className="font-mono text-sm font-bold text-zinc-500 mb-4 uppercase tracking-widest">/ Infrastructure_&_Tools</h3>
         <div className="flex flex-wrap gap-3">
@@ -473,7 +488,7 @@ export const SkillsSection: React.FC = () => (
 export const ExperienceSection: React.FC = () => (
   <section className="section-content max-w-3xl mx-auto animate-fade-in">
     <SectionHeader title="Trajectory" meta="YEARS: 2023-2025" />
-    
+
     <div className="relative space-y-8 pl-4 border-l-2 border-dashed border-zinc-300 dark:border-zinc-700">
       <div className="relative pl-8">
         <span className="absolute -left-[9px] top-1 h-4 w-4 bg-primary border-2 border-white dark:border-black rounded-sm"></span>
@@ -506,7 +521,7 @@ export const ExperienceSection: React.FC = () => (
 export const EducationSection: React.FC = () => (
   <section className="section-content max-w-3xl mx-auto animate-fade-in">
     <SectionHeader title="Data Bank" meta="ACADEMIC" />
-    
+
     <div className="bg-surface-light dark:bg-zinc-900 border-2 border-black dark:border-white p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start">
       <div className="w-16 h-16 bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-2xl flex-shrink-0 border-2 border-primary shadow-brutal">
         BCA
