@@ -114,7 +114,74 @@ export const ProfileSection: React.FC<{ onNavigate: (tab: Tab) => void }> = ({ o
               <span className="material-symbols-outlined text-base">code</span>
               github.com/RajuTechAssist
             </a>
+            <a className="flex items-center gap-3 hover:text-primary transition-colors font-medium truncate" href="https://www.instagram.com/oooye.raju/" target="_blank" rel="noreferrer">
+              <span className="material-symbols-outlined text-base">code</span>
+              instagram.com/oooye.raju/
+            </a>
           </div>
+        </div>
+      </div>
+
+      {/* Freelance Services Module */}
+      <div className="mb-8 md:mb-12">
+        <div className="bg-yellow-400 dark:bg-yellow-600 border-2 border-black dark:border-white p-4 mb-6 shadow-brutal flex flex-col md:flex-row items-center gap-4">
+          <span className="material-symbols-outlined text-4xl text-black dark:text-white animate-pulse">campaign</span>
+          <div className="flex-1 text-center md:text-left">
+            <h3 className="text-lg font-bold uppercase text-black dark:text-white leading-tight">
+              AVAILABLE FOR SIDE_QUESTS
+            </h3>
+            <p className="font-mono text-xs md:text-sm text-black dark:text-zinc-100 font-medium mt-1">
+              "Will code for currency. I turn caffeine into deployable software. Check out the menu below."
+            </p>
+          </div>
+          <div className="hidden md:block text-4xl font-mono font-bold text-black/20 dark:text-white/20 select-none">
+            $$$
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[
+            { 
+              title: "Web Development", 
+              desc: "Building pixel-perfect interfaces that don't explode on mobile devices.",
+              icon: "html" 
+            },
+            { 
+              title: "Tech Content Writing", 
+              desc: "I translate 'Developer Klingon' into human-readable documentation.",
+              icon: "edit_note" 
+            },
+            { 
+              title: "Java/CS Tutoring", 
+              desc: "Debugging your brain. I explain recursion until you stop crying.",
+              icon: "school" 
+            },
+            { 
+              title: "AI Integration", 
+              desc: "Sprinkling LLM magic on boring apps. Skynet is not included.",
+              icon: "psychology" 
+            },
+            { 
+              title: "Payment Systems", 
+              desc: "Secure gateways for acquiring funds. Because exposure doesn't pay rent.",
+              icon: "credit_card" 
+            },
+            { 
+              title: "E-commerce Ops", 
+              desc: "Digital storefronts. 24/7 revenue streams while you sleep.",
+              icon: "storefront" 
+            }
+          ].map((service, index) => (
+            <div key={index} className="bg-surface-light dark:bg-zinc-900 border-2 border-black dark:border-zinc-700 p-4 hover:border-primary hover:-translate-y-1 transition-transform group">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">{service.icon}</span>
+                <span className="font-bold text-xs uppercase tracking-wider">{service.title}</span>
+              </div>
+              <p className="font-mono text-[11px] text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                {service.desc}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
 
